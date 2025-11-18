@@ -1,0 +1,5 @@
+If statements
+If statements let the program choose between actions.
+Example: if score > 50: show "Pass" else show "Try again".
+They help programs react to different situations.
+We will practice with small examples.

@@ -1,0 +1,6 @@
+Variables
+A variable stores a value in the computer's memory.
+Example: x = 10 means x holds the number ten.
+Variables let programs remember information.
+They can be numbers, text, or true/false values.
+We will use variables to build simple programs.
