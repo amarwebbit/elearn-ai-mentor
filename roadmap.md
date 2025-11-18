@@ -1,0 +1,1 @@
+Week 1: Setup, auth, simple UI

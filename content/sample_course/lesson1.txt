@@ -1,0 +1,5 @@
+Intro to Programming
+Programming means giving instructions to a computer.
+We write code using languages like Python or JavaScript.
+A program solves a problem step by step.
+We will learn small ideas and build them up.

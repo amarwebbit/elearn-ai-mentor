@@ -1,0 +1,15 @@
+{
+  "quiz_title": "Basics Quiz",
+  "questions": [
+    {
+      "q": "Which language can we use to write programs?",
+      "options": ["English", "Python", "Spanish"],
+      "answer": 1
+    },
+    {
+      "q": "What does a program do?",
+      "options": ["Solve problems", "Sleep", "Eat"],
+      "answer": 0
+    }
+  ]
+}
