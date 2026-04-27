@@ -1,0 +1,344 @@
+@import "tailwindcss";
+
+:root {
+  /* Primary Brand Palette */
+  --color-brand-950: #0F1F3D;
+  --color-brand-900: #1A3C6E;
+  --color-brand-700: #1D4ED8;
+  --color-brand-600: #2563EB;
+  --color-brand-500: #3B82F6;
+  --color-brand-100: #DBEAFE;
+  --color-brand-50: #EFF6FF;
+
+  /* Neutral Palette */
+  --color-neutral-950: #0F172A;
+  --color-neutral-900: #1E293B;
+  --color-neutral-700: #334155;
+  --color-neutral-500: #64748B;
+  --color-neutral-300: #CBD5E1;
+  --color-neutral-100: #F1F5F9;
+  --color-neutral-50: #F8FAFC;
+
+  /* Semantic Colors */
+  --color-success-600: #16A34A;
+  --color-success-50: #F0FDF4;
+  --color-warning-600: #D97706;
+  --color-warning-50: #FFFBEB;
+  --color-danger-600: #DC2626;
+  --color-danger-50: #FEF2F2;
+
+  /* Exam Colors */
+  --color-exam-green: #22C55E;
+  --color-exam-red: #EF4444;
+  --color-exam-purple: #A855F7;
+  --color-exam-grey: #94A3B8;
+  --color-exam-yellow: #F59E0B;
+}
+
+@theme inline {
+  --color-brand-950: var(--color-brand-950);
+  --color-brand-900: var(--color-brand-900);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-50: var(--color-brand-50);
+
+  --color-neutral-950: var(--color-neutral-950);
+  --color-neutral-900: var(--color-neutral-900);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-50: var(--color-neutral-50);
+
+  --color-success-600: var(--color-success-600);
+  --color-success-50: var(--color-success-50);
+  --color-warning-600: var(--color-warning-600);
+  --color-warning-50: var(--color-warning-50);
+  --color-danger-600: var(--color-danger-600);
+  --color-danger-50: var(--color-danger-50);
+
+  --color-exam-green: var(--color-exam-green);
+  --color-exam-red: var(--color-exam-red);
+  --color-exam-purple: var(--color-exam-purple);
+  --color-exam-grey: var(--color-exam-grey);
+  --color-exam-yellow: var(--color-exam-yellow);
+
+  --font-display: var(--font-dm-sans);
+  --font-body: var(--font-plus-jakarta-sans);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --animate-fade-in-up: fade-in-up 0.5s ease-out;
+  --animate-float: float 4s ease-in-out infinite;
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+  }
+}
+
+body {
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-900);
+  font-family: var(--font-body);
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  .fill-mode-forwards {
+    animation-fill-mode: forwards;
+  }
+}
+
+/* Exam engine styles (scoped utility classes used by pilot-exam.tsx).
+   Note: Tailwind v4's built-in pipeline may not resolve relative @import reliably
+   in some setups, so we inline these styles instead of importing a separate file. */
+
+.exam-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.exam-panel {
+  min-width: 0;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.palette-legend {
+  display: grid;
+  gap: 12px;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.palette-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid #9e9e9e;
+  background: #eeeeee;
+  font-weight: 700;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 3px rgba(0, 0, 0, 0.12);
+}
+
+.palette-button.current {
+  outline: 2px solid #1976d2;
+}
+
+.palette-button.palette-not-visited {
+  background: #cfd8dc;
+}
+
+.palette-button.palette-not-answered {
+  background: #ff5722;
+  color: #fff;
+}
+
+.palette-button.palette-answered {
+  background: #4caf50;
+  color: #fff;
+}
+
+.palette-button.palette-marked {
+  background: #7e57c2;
+  color: #fff;
+}
+
+.palette-button.palette-answered-marked {
+  background: #7e57c2;
+  color: #fff;
+  position: relative;
+}
+
+.palette-button.palette-answered-marked::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4caf50;
+  border: 2px solid #fff;
+}
+
+.palette-status-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  background: #e6f3fb;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #c7e0f0;
+}
+
+.status-pill {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #d7e3ea;
+  font-weight: 600;
+}
+
+.status-pill strong {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.85rem;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.status-pill.answered strong {
+  background: #4caf50;
+}
+
+.status-pill.not-answered strong {
+  background: #ff5722;
+}
+
+.status-pill.not-visited strong {
+  background: #cfd8dc;
+  color: #263238;
+}
+
+.status-pill.marked strong {
+  background: #7e57c2;
+}
+
+.status-pill.answered-marked strong {
+  background: #7e57c2;
+  position: relative;
+}
+
+.status-pill.answered-marked strong::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4caf50;
+  border: 2px solid #fff;
+}
+
+.gate-layout {
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 0;
+  border: 1px solid #d6d6d6;
+  border-top: none;
+}
+
+.gate-layout.palette-collapsed {
+  grid-template-columns: minmax(0, 1fr) 140px;
+}
+
+.gate-panel {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.question-panel {
+  border-right: 1px solid #d6d6d6;
+  min-height: 420px;
+}
+
+.palette-panel {
+  background: #e9f3fb;
+  padding: 16px;
+}
+
+.palette-panel .panel-heading {
+  background: #1976d2;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin: -16px -16px 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(255, 247, 235, 0.78);
+  border: 1px solid rgba(30, 33, 43, 0.08);
+  user-select: none;
+}
+
+.option-row input {
+  width: auto;
+  margin-top: 4px;
+}
+
+.warning-text {
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+.violation-flow {
+  display: grid;
+  gap: 10px;
+}
+
+.flow-step {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(28, 95, 181, 0.18);
+}
+
+@media (max-width: 1120px) {
+  .exam-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .palette-grid {
+    grid-template-columns: 1fr;
+  }
+}
